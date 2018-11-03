@@ -15,9 +15,34 @@ class TD(object):
         self.lambda_ = lambda_
         self.env = env
 
-    def train(self):
+    def train(self, episodes):
+        # Method to run the td algorithm for n episodes
+        # input: episodes
+        # return: None
+        for _ in range(episodes):
+            state = self.env.reset() # reset the environment
+            while not self.env.status:
+
+                # Getting action
+                action = 0 #todo
+
+                # performing the action in the environment
+                new_state, reward, status = self.env.performAction(action)
+
+                # todo update
+                state = new_state
 
 
-        reward = 0 # todo
-        td_error = None  # pass
-        pass
+    def update(self, reward, state, new_state):
+        # Getting the current and next state
+        curr_state = 0 #todo
+        new_state = 0  #todo
+
+        # computing the td error
+        delta_t = reward + self.lambda_*next_state - curr_state   # td error
+
+
+        # updating the 
+
+
+

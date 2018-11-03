@@ -1,6 +1,6 @@
 # Reinforcement Learning Algorithm Implementation
 
-## [Environment]
+## Environment
 
 All the algorithm implementation are based on the two environments, GridWorld and the CartPole environment.
 
