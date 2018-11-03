@@ -5,6 +5,7 @@ import numpy as np
 # class to create grid world and perform actions
 class gridWorld():
     def __init__(self):
+        self.name = "grid"
         self.i = 0 # initial position
         self.j = 0 # initial position
         self.world =  [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, -10, 0, 10]] # inializing the world and values as a rewards

@@ -9,6 +9,7 @@ class CartPole():
     # there will be two action 1 and -1
     # and force will be have sign accordingly.
     def __init__(self):
+        self.name = "cart"
         self.F = 10.0
         self.g = 9.8
         self.l = 0.5
