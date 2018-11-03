@@ -1,6 +1,6 @@
-# Reinforcement-Learning-Implementation
+# Reinforcement Learning Algorithm Implementation
 
-## Environemnt
+## Environment
 
 All the algorithm implementation are based on the two environments, GridWorld and the CartPole environment.
 
@@ -14,16 +14,13 @@ CartPole Environment looks like as shown below:
 ![alt text](image/cartpole.gif)
 
 
-## FirstChoiceHillClimbing
-"""
-Cross Entropy implementation
-First Choice Hill Climbing
-"""
+## [FirstChoiceHillClimbing]
+* [First Choice Hill Climbing](https://people.cs.umass.edu/~pthomas/courses/CMPSCI_687_Fall2018/687_F18_main.pdf) <br/>
+* [Cross Entropy implementation](https://hal.archives-ouvertes.fr/hal-00738463/document)
 
 
 
-## TD Algorithm
-"""
-TD Implementation
-"""
+## [TD Algorithm]
+* [TD Implementation](https://en.wikipedia.org/wiki/Temporal_difference_learning)
+
 
