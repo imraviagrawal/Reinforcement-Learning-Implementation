@@ -37,7 +37,6 @@ def sigmoid(theta, sigma= 1.0):
     theta_k = numerator / denominator
     return theta_k
 
-
 # softmax tabular
 def sampleAction(state, s):
     i, j = state
