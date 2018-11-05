@@ -40,6 +40,8 @@ class TD(object):
                 # performing the action in the environment
                 new_state, reward, status = self.env.performAction(action)
 
+                print("here")
+                break
                 if status:
                     break
                 # update value function
@@ -71,7 +73,8 @@ class TD(object):
             next_state_value = self.value_function[new_s]
 
         else:
-            pass
+            # todo make necessary changes to to the value function calculation
+            curr_state_value =
             # curr_state_value = np.dot(s, self.features)
 
 
