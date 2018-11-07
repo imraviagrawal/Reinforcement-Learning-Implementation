@@ -15,7 +15,5 @@ steps = 100
 episodes = 100
 
 # create policy
-theta = np.random.uniform(low = -1.5, high=1.5, size=(state_space*actions))
-
-td = TD(lambda_, alpha, env, state_space, steps, theta, order=3)
-td.train(episodes)
+td = TD(lambda_, alpha, env, state_space, steps, order=3)
+#td.train(episodes)
