@@ -4,16 +4,17 @@
 
 # imports
 from TD_algorithm import TD
-import numpy as np
 from GridWorld import gridWorld
-import matplotlib.pyplot as plt
-from utils import softmax
+import sys
+
+arg = float(sys.argv[1])
+
 
 # Initializing the gridworld
 env = gridWorld()
 
 # user defined variables
-alpha = 0.001
+alpha = arg
 lambda_ = 1
 state_space = 24
 actions = 4

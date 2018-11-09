@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import itertools
+import pickle
 
 
 # TD Algorithm class
@@ -21,9 +22,9 @@ class TD(object):
         self.order = order
         self.probs = [0.25, 0.25, 0.25, 0.25]
         if self.env.name == "cart":
-            self.phi = np.array(list(itertools.product(range(order+1), repeat=4)))
-            print(self.phi.shape)
-            self.w = np.zeros((2, 2)) # todo
+            self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
+            self.w = np.zeros(((order+1)**4)).reshape(((order+1)**4), 1)
+
 
     def train(self, episodes):
         # Method to run the td algorithm for n episodes
@@ -56,8 +57,8 @@ class TD(object):
 
                 state = new_state
 
-        self.plotTdError()
-
+        # self.plotTdError()
+        self.saveTDerror()
 
 
     def update(self, reward, s, new_s, squared_error=False):
@@ -77,30 +78,29 @@ class TD(object):
             next_state_value = self.value_function[new_s]
 
         else:
+            # todo normalize s and new_s
             # todo make necessary changes to to the value function calculation
-            features_s = np.cos(((self.order + 1)/2) * math.pi * np.array(s))
-            features_s_new = np.cos(((self.order + 1) / 2) * math.pi * np.array(new_s))
-            curr_state_value = np.dot(np.array(s).T, features_s)
-            next_state_value = np.dot(np.array(new_s).T, features_s_new)
-            print(curr_state_value, next_state_value)
-
-
+            temp_s = np.reshape(np.array(s), (1, 4))
+            temp_new_s = np.reshape(np.array(new_s), (1, 4))
+            phi_s = np.cos(np.dot(self.c, temp_s.T)*math.pi)
+            phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
+            curr_state_value = np.dot(self.w.T, phi_s)[0]
+            next_state_value = np.dot(self.w.T, phi_new_s)[0]
 
         # computing the td error
         delta_t = reward + self.lambda_*next_state_value - curr_state_value   # td error
-
-
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
         if not squared_error:
             if self.env.name == "grid":
                 self.value_function[s] = self.value_function[s] + self.alpha*delta_t
+
             else:
                 # Todo check the implementation
-                curr_state_value = curr_state_value + self.alpha*delta_t
+                self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
 
         else:
-            self.td_error.append(delta_t * delta_t)
+            self.td_error.append(delta_t*delta_t)
 
     # softmax tabular
     def sampleActionGrid(self, state):
@@ -117,4 +117,13 @@ class TD(object):
     def plotTdError(self):
         plt.plot(self.td_error)
         plt.show()
+
+
+    def saveTDerror(self):
+        if self.env.name == "cart":
+            name = "TD_error/" + self.env.name + "_" + str(self.order) + "_" + str(self.alpha) + ".p"
+        else:
+            name = "TD_error/" + self.env.name + "_" + str(self.alpha) + ".p"
+        pickle.dump(self.td_error, open(name , "wb"))
+
 
