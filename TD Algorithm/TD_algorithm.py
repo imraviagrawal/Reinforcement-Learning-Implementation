@@ -78,8 +78,6 @@ class TD(object):
             next_state_value = self.value_function[new_s]
 
         else:
-            # todo normalize s and new_s
-            # todo make necessary changes to to the value function calculation
             temp_s = np.reshape(np.array(s), (1, 4))
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
             phi_s = np.cos(np.dot(self.c, temp_s.T)*math.pi)
@@ -96,7 +94,6 @@ class TD(object):
                 self.value_function[s] = self.value_function[s] + self.alpha*delta_t
 
             else:
-                # Todo check the implementation
                 self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
 
         else:
@@ -117,7 +114,6 @@ class TD(object):
     def plotTdError(self):
         plt.plot(self.td_error)
         plt.show()
-
 
     def saveTDerror(self):
         if self.env.name == "cart":
