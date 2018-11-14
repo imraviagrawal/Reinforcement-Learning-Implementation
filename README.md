@@ -21,10 +21,11 @@ CartPole Environment looks like as shown below:
 ## [TD Algorithm](https://github.com/imraviagrawal/Reinforcement-Learning-Implementation/tree/master/TD%20Algorithm)
 * [TD Implementation](https://en.wikipedia.org/wiki/Temporal_difference_learning)
 
-## [Sarsa and Q Learning](https://github.com/imraviagrawal/Reinforcement-Learning-Implementation/tree/master/Sarsa_q_learning)
-* [Q Learning](https://en.wikipedia.org/wiki/Q-learning)
+## [Sarsa](https://github.com/imraviagrawal/Reinforcement-Learning-Implementation/tree/master/Sarsa)
 * [Sarsa](https://en.wikipedia.org/wiki/State–action–reward–state–action)
 
 
+## [Q Learning](https://github.com/imraviagrawal/Reinforcement-Learning-Implementation/tree/master/Q_Learning)
+* [Q Learning](https://en.wikipedia.org/wiki/Q-learning)
 
 
