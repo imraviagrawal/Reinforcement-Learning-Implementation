@@ -11,17 +11,18 @@ import pickle
 class Sarsa(object):
     # Main class to train the TD algorithm for the n number of episodes
     # the class takes the policy, alpha and lambda as the input
-    def __init__(self, gamma, alpha, env, state_space, steps, e, order=3, actions=4):
+    def __init__(self, gamma, alpha, env, state_space, steps, e, order=3, actions=4, plot=False):
         self.alpha = alpha
         self.gamma = gamma
         self.env = env
         self.state_space = state_space
-        self.q_value = np.random.uniform(size= (state_space, actions))
+        self.q_value = np.random.uniform(0, 1, size= (state_space, actions))
         self.episolon = e
         self.steps = steps
         self.td_error = []
         self.order = order
         self.probs = [0.25, 0.25, 0.25, 0.25]
+        self.plot = plot
         if self.env.name == "cart":
             self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
             self.w = np.zeros(((order+1)**4)).reshape(((order+1)**4), 1)
@@ -32,9 +33,8 @@ class Sarsa(object):
         # input: episodes
         # return: None
         for _ in range(episodes):
-            status = False
             state = self.env.reset() # reset the environment
-
+            status = self.env.status
             # While we do not reach the terminal state
 
             # Getting action # todo make changes as per policy e-greedy
@@ -47,10 +47,14 @@ class Sarsa(object):
             else:
                 assert "Not Supported environment"
 
+            print("Episode: ", _)
             while not status:
 
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
+
+                if status:
+                    break
 
                 # Choosing the action a_prime at the state s_prime
                 if self.env.name == "cart":
@@ -63,14 +67,17 @@ class Sarsa(object):
                     assert "Not Supported environment"
 
                 # update the q values according to the previous state and new state
-                self.update(reward, state, new_state)
 
+                self.update(reward, state, new_state, action, action_prime)
                 # changing the last state to new state
                 state = new_state
                 action = action_prime
 
+        if self.plot:
+            self.plotTdError()
 
-    def update(self, reward, s, new_s):
+
+    def update(self, reward, s, new_s, action, action_prime):
         # Update the value function
         # input: reward, curr_state, and new state
         # return: None (update)
@@ -83,8 +90,8 @@ class Sarsa(object):
             new_s= i_new*5 + j_new
 
             # gettting the last value and new value
-            curr_state_value = self.q_value[s]
-            next_state_value = self.q_value[new_s]
+            curr_state_value = self.q_value[s, action]
+            next_state_value = self.q_value[new_s, action_prime]
 
         else:
             temp_s = np.reshape(np.array(s), (1, 4))
@@ -95,21 +102,23 @@ class Sarsa(object):
             next_state_value = np.dot(self.w.T, phi_new_s)[0]
 
         # computing the td error
-        delta_t = reward + self.lambda_*next_state_value - curr_state_value   # td error
+        delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
 
         if self.env.name == "grid":
-            self.q_value[s] = self.q_value[s] + self.alpha*delta_t
+            self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
         else:
             self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
+
+        self.td_error.append(delta_t*delta_t)
 
     # softmax tabular
     def sampleActionGrid(self, state, e_greedy=False):
         i, j = state
         index = i*5+j
-        if e_greedy:
+        if e_greedy and np.random.rand() < self.episolon:
             action = np.random.choice([0, 1, 2, 3], p=self.probs)
         else:
             action = np.argmax(self.q_value[index, :])

@@ -1,5 +1,5 @@
 # imports
-from sarsa import Sarsa
+from q_learning import Q_learning
 from GridWorld import gridWorld
 import sys
 
@@ -18,5 +18,5 @@ episodes = 100
 e = 0.2
 plot = True
 
-td = Sarsa(gamma, alpha, env, state_space, steps, e,  plot=plot)
+td = Q_learning(gamma, alpha, env, state_space, steps,e,  plot=plot)
 td.train(episodes)
