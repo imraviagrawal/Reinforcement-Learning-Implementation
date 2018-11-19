@@ -11,7 +11,7 @@ import pickle
 class Sarsa(object):
     # Main class to train the TD algorithm for the n number of episodes
     # the class takes the policy, alpha and lambda as the input
-    def __init__(self, gamma, alpha, env, state_space, steps, e, order=3, actions=4, plot=False):
+    def __init__(self, gamma, alpha, env, state_space, steps, e, order=3, actions=4, plot=False, discount=0.9):
         self.alpha = alpha
         self.gamma = gamma
         self.env = env
@@ -24,7 +24,7 @@ class Sarsa(object):
         self.order = order
         self.probs = [0.25, 0.25, 0.25, 0.25]
         self.plot = plot
-
+        self.discount = discount
         if self.env.name == "cart":
             self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
             self.w = np.zeros(2*((order + 1) ** 4)).reshape((2*(order + 1) ** 4), 1) # 512*1 weight for phi in case
@@ -59,7 +59,7 @@ class Sarsa(object):
                 new_state, reward, status = self.env.performAction(action)
 
                 count += 1
-                total_reward += (0.9**count)*reward
+                total_reward += (self.discount**count)*reward
 
                 if status:
                     break
@@ -75,8 +75,8 @@ class Sarsa(object):
                     assert "Not Supported environment"
 
                 # update the q values according to the previous state and new state
-
                 self.update(reward, state, new_state, action, action_prime)
+
                 # changing the last state to new state
                 state = new_state
                 action = action_prime

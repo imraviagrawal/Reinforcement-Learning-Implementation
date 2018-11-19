@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ad37e0d-d8ca-45ef-ad7b-6be9ef4bb0ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sarsa/scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/q_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/q_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/cartPole.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/cartPole.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sarsa/sarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/sarsa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TD Algorithm/cartPoleTd.py" beforeDir="false" afterPath="$PROJECT_DIR$/TD Algorithm/cartPoleTd.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,13 +36,13 @@
         <counts>
           <entry key="Python Console" value="228" />
           <entry key="md" value="88" />
-          <entry key="py" value="3637" />
+          <entry key="py" value="3859" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="88" />
-          <entry key="Python" value="3796" />
+          <entry key="Python" value="4018" />
           <entry key="Scratch" value="69" />
         </counts>
       </usages-collector>
@@ -56,20 +50,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TD Algorithm/TD_algorithm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="150" column="45" lean-forward="true" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
+            <state relative-caret-position="302">
+              <caret line="76" column="83" selection-start-line="76" selection-start-column="83" selection-end-line="76" selection-end-column="83" />
               <folding>
                 <element signature="e#11#29#0" expanded="true" />
               </folding>
@@ -78,19 +63,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPoleTd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="3" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="330">
+              <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
               <folding>
                 <element signature="e#10#33#0" expanded="true" />
               </folding>
@@ -161,8 +137,8 @@
         <option value="$PROJECT_DIR$/Sarsa/cartPole.py" />
         <option value="$PROJECT_DIR$/Q_Learning/q_learning.py" />
         <option value="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" />
-        <option value="$PROJECT_DIR$/Sarsa/sarsa.py" />
         <option value="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" />
+        <option value="$PROJECT_DIR$/Sarsa/sarsa.py" />
       </list>
     </option>
   </component>
@@ -400,13 +376,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
+    <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPoleTd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="3" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -414,23 +387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
           <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="150" column="45" lean-forward="true" selection-start-line="150" selection-start-column="45" selection-end-line="150" selection-end-column="45" />
-          <folding>
-            <element signature="e#11#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPoleTd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="3" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -444,12 +400,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
+    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding>
             <element signature="e#10#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+          <folding>
+            <element signature="e#10#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="76" column="83" selection-start-line="76" selection-start-column="83" selection-end-line="76" selection-end-column="83" />
+          <folding>
+            <element signature="e#11#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
