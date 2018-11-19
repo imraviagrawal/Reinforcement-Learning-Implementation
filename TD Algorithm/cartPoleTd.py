@@ -1,5 +1,5 @@
 # Imports
-from Sarsa.cartPole import CartPole
+from cartPole import CartPole
 from TD_algorithm import TD
 import sys
 # Initializing the cartpole env

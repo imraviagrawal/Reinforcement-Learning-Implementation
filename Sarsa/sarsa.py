@@ -20,12 +20,15 @@ class Sarsa(object):
         self.episolon = e
         self.steps = steps
         self.td_error = []
+        self.reward = []
         self.order = order
         self.probs = [0.25, 0.25, 0.25, 0.25]
         self.plot = plot
+
         if self.env.name == "cart":
             self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
-            self.w = np.zeros(((order+1)**4)).reshape(((order+1)**4), 1)
+            self.w = np.zeros(2*((order + 1) ** 4)).reshape((2*(order + 1) ** 4), 1) # 512*1 weight for phi in case
+            self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1) # 256*1 vector to pad the phi
 
 
     def train(self, episodes):
@@ -47,11 +50,16 @@ class Sarsa(object):
             else:
                 assert "Not Supported environment"
 
+            total_reward = 0
+            count = 0
             print("Episode: ", _)
             while not status:
 
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
+
+                count += 1
+                total_reward += (0.9**count)*reward
 
                 if status:
                     break
@@ -73,8 +81,10 @@ class Sarsa(object):
                 state = new_state
                 action = action_prime
 
-        if self.plot:
-            self.plotTdError()
+            self.reward.append(total_reward/count)
+
+        plt.plot(self.reward)
+        plt.show()
 
 
     def update(self, reward, s, new_s, action, action_prime):
@@ -96,10 +106,17 @@ class Sarsa(object):
         else:
             temp_s = np.reshape(np.array(s), (1, 4))
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
-            phi_s = np.cos(np.dot(self.c, temp_s.T)*math.pi)
+
+            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else  np.vstack([phi_s, self.zeroStack])
+
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
+            phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
+
+            # make changes
             curr_state_value = np.dot(self.w.T, phi_s)[0]
             next_state_value = np.dot(self.w.T, phi_new_s)[0]
+
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
@@ -110,12 +127,15 @@ class Sarsa(object):
             self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
         else:
+            grad = np.zeros((4, 2))
+            grad[:, action] += temp_s.reshape(4, )
+
             self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
 
         self.td_error.append(delta_t*delta_t)
 
     # softmax tabular
-    def sampleActionGrid(self, state, e_greedy=False):
+    def sampleActionGrid(self, state, e_greedy=True):
         i, j = state
         index = i*5+j
         if e_greedy and np.random.rand() < self.episolon:
@@ -125,11 +145,19 @@ class Sarsa(object):
         return action
 
 
-    def sampleActionCart(self, state):
-        probs = np.random.uniform()
-        if probs > 0.5:
-            return 1
-        return 0
+    def sampleActionCart(self, state, e_greedy=True):
+        # if e_greedy
+        if e_greedy and np.random.rand() < self.episolon:
+            action = np.random.choice([0, 1])
+
+        # linear policy
+        else:
+            temp_s = np.reshape(np.array(state), (1, 4))
+            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s])) > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack])) else 1
+
+        return action
+
 
     def plotTdError(self):
         plt.plot(self.td_error)

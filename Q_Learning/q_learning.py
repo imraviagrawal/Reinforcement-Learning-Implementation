@@ -25,7 +25,7 @@ class Q_learning(object):
         self.plot = plot
         if self.env.name == "cart":
             self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
-            self.w = np.zeros(((order+1)**4)).reshape(((order+1)**4), 1)
+            self.w = np.zeros((4, 2))  # linear function approximator
 
 
     def train(self, episodes):
@@ -38,6 +38,7 @@ class Q_learning(object):
 
             print("Episode: ", _)
             # While we do not reach the terminal state
+            count = 0
             while not status:
 
                 # Choosing the action a_prime at the state s_prime
@@ -86,10 +87,8 @@ class Q_learning(object):
         else:
             temp_s = np.reshape(np.array(s), (1, 4))
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
-            phi_s = np.cos(np.dot(self.c, temp_s.T)*math.pi)
-            phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
-            curr_state_value = np.dot(self.w.T, phi_s)[0]
-            next_state_value = np.dot(self.w.T, phi_new_s)[0]
+            curr_state_value = np.dot(temp_s, self.w)[0, action]
+            next_state_value = np.dot(temp_new_s, self.w)[0, action_prime]
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
@@ -100,7 +99,8 @@ class Q_learning(object):
             self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
         else:
-            self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
+            grad = 1.0
+            self.w = self.w + self.alpha * delta_t * grad
 
         self.td_error.append(delta_t*delta_t)
 
@@ -115,11 +115,17 @@ class Q_learning(object):
         return action
 
 
-    def sampleActionCart(self, state):
-        probs = np.random.uniform()
-        if probs > 0.5:
-            return 1
-        return 0
+    def sampleActionCart(self, state, e_greedy=True):
+        # if e_greedy
+        if e_greedy and np.random.rand() < self.episolon:
+            action = np.random.choice([0, 1])
+
+        # linear policy
+        else:
+            temp_s = np.reshape(np.array(state), (1, 4))
+            action = np.argmax(np.dot(temp_s, self.w))
+
+        return action
 
     def plotTdError(self):
         plt.plot(self.td_error)
