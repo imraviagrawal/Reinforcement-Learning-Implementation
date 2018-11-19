@@ -31,9 +31,9 @@ class Sarsa(object):
             self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1) # 256*1 vector to pad the phi
 
 
-    def train(self, episodes):
+    def train(self, episodes, trails):
         # Method to run the sarsa algorithm for n episodes
-        # input: episodes
+        # input: episodes, trails
         # return: None
         for _ in range(episodes):
             state = self.env.reset() # reset the environment
@@ -50,26 +50,29 @@ class Sarsa(object):
             else:
                 assert "Not Supported environment"
 
-            total_reward = 0
-            count = 0
             print("Episode: ", _)
+
+            # local variable to store the variable
+            count = 0 # count
+            episode_reward = 0 # episode reward
+
             while not status:
 
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
 
                 count += 1
-                total_reward += (self.discount**count)*reward
+                episode_reward += (self.discount**count)*reward
 
                 if status:
                     break
 
                 # Choosing the action a_prime at the state s_prime
                 if self.env.name == "cart":
-                    action_prime = self.sampleActionCart(new_state)  # todo sarsa policy change action function to accomdate the q value
+                    action_prime = self.sampleActionCart(new_state, e_greedy=False)  # todo sarsa policy change action function to accomdate the q value
 
                 elif self.env.name == "grid":
-                    action_prime = self.sampleActionGrid(new_state) # todo sarsa policy
+                    action_prime = self.sampleActionGrid(new_state, e_greedy=False) # todo sarsa policy
 
                 else:
                     assert "Not Supported environment"
@@ -81,10 +84,8 @@ class Sarsa(object):
                 state = new_state
                 action = action_prime
 
-            self.reward.append(total_reward/count)
+            self.reward.append(episode_reward)
 
-        plt.plot(self.reward)
-        plt.show()
 
 
     def update(self, reward, s, new_s, action, action_prime):
@@ -108,9 +109,11 @@ class Sarsa(object):
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else  np.vstack([phi_s, self.zeroStack])
+            phi_s = phi_s/np.linalg.norm(phi_s)
+            phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
+            phi_new_s = phi_new_s / np.linalg.norm(phi_new_s)
             phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
 
             # make changes
@@ -127,9 +130,6 @@ class Sarsa(object):
             self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
         else:
-            grad = np.zeros((4, 2))
-            grad[:, action] += temp_s.reshape(4, )
-
             self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
 
         self.td_error.append(delta_t*delta_t)
@@ -154,8 +154,8 @@ class Sarsa(object):
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s])) > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack])) else 1
-
+            phi_s = phi_s / np.linalg.norm(phi_s)
+            action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 
 
