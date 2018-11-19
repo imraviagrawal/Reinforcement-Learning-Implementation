@@ -49,10 +49,10 @@ class Q_learning(object):
                 # Choosing the action a_prime at the state s_prime
 
                 if self.env.name == "cart":
-                    action = self.sampleActionCart(state, e_greedy=False)
+                    action = self.sampleActionCart(state, e_greedy=True)
 
                 elif self.env.name == "grid":
-                    action = self.sampleActionGrid(state, e_greedy=False)
+                    action = self.sampleActionGrid(state, e_greedy=True)
 
                 else:
                     assert "Not Supported environment"
@@ -97,12 +97,17 @@ class Q_learning(object):
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            # phi_s = phi_s / np.sqrt((np.sum(phi_s ** 2)))
             phi_s = phi_s / np.linalg.norm(phi_s)
             phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
+            # phi_new_s = phi_new_s / np.sqrt((np.sum(phi_new_s ** 2)))
             phi_new_s = phi_new_s / np.linalg.norm(phi_new_s)
-            phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
+            temp1 = np.vstack([self.zeroStack, phi_new_s]) # if action 0
+            temp2 = np.vstack([phi_new_s, self.zeroStack]) # if action 1
+            action_prime = 0 if np.dot(self.w.T, temp1)[0] > np.dot(self.w.T, temp2)[0] else 1
+            phi_new_s = temp1 if action_prime == 0 else temp2
 
             # make changes
             curr_state_value = np.dot(self.w.T, phi_s)[0]
@@ -141,6 +146,7 @@ class Q_learning(object):
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            # phi_s = phi_s / np.sqrt((np.sum(phi_s ** 2)))
             phi_s = phi_s / np.linalg.norm(phi_s)
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
