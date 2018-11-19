@@ -44,10 +44,10 @@ class Q_learning(object):
                 # Choosing the action a_prime at the state s_prime
 
                 if self.env.name == "cart":
-                    action = self.sampleActionCart(state)  # todo sarsa policy change action function to accomdate the q value
+                    action = self.sampleActionCart(state, e_greedy=False) 
 
                 elif self.env.name == "grid":
-                    action = self.sampleActionGrid(state) # todo sarsa policy
+                    action = self.sampleActionGrid(state, e_greedy=False)
 
                 else:
                     assert "Not Supported environment"
@@ -104,8 +104,8 @@ class Q_learning(object):
 
         self.td_error.append(delta_t*delta_t)
 
-    # softmax tabular
-    def sampleActionGrid(self, state, e_greedy=False):
+    #tabular
+    def sampleActionGrid(self, state, e_greedy=True):
         i, j = state
         index = i*5+j
         if e_greedy and np.random.rand() < self.episolon:
@@ -123,8 +123,9 @@ class Q_learning(object):
         # linear policy
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
-            action = np.argmax(np.dot(temp_s, self.w))
-
+            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            phi_s = phi_s / np.linalg.norm(phi_s)
+            action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 
     def plotTdError(self):

@@ -130,11 +130,11 @@ class Sarsa(object):
             self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
         else:
-            self.w = self.w + self.alpha*np.multiply(np.array(delta_t), phi_s)
+            self.w = self.w + self.alpha*delta_t[0]*phi_s
 
         self.td_error.append(delta_t*delta_t)
 
-    # softmax tabular
+    #tabular
     def sampleActionGrid(self, state, e_greedy=True):
         i, j = state
         index = i*5+j

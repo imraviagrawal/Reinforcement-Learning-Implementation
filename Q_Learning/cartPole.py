@@ -10,6 +10,7 @@ class CartPole():
     # and force will be have sign accordingly.
     def __init__(self):
         self.name = "cart"
+        self.t = 0
         self.F = 10.0
         self.g = 9.8
         self.l = 0.5
@@ -43,15 +44,19 @@ class CartPole():
         theta = theta + self.tau*theta_dot
         theta_dot = theta_dot + self.tau*theta_2dot
 
+        # updating the time
+        self.t = self.t + self.tau
+
         # Updating the state
         self.state = (x, x_dot, theta, theta_dot)
-        self.status = (abs(x) > self.bound) or (abs(theta) > self.FailAngle)
+        self.status = (abs(x) > self.bound) or (abs(theta) > self.FailAngle) or (self.t > 20)
         rewards = 1
 
         return self.state, rewards, self.status
 
 
     def reset(self):
-        self.state = np.random.uniform(low=-0.03, high=0.03, size=(4,))
+        self.state = np.random.uniform(low=-0.001, high=0.001, size=(4,))
         self.status = False
+        self.t = 0
         return self.state

@@ -46,6 +46,7 @@ class CartPole():
 
         # updating the time
         self.t = self.t + self.tau
+
         # Updating the state
         self.state = (x, x_dot, theta, theta_dot)
         self.status = (abs(x) > self.bound) or (abs(theta) > self.FailAngle) or (self.t > 20)

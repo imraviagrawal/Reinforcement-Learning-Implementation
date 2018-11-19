@@ -11,17 +11,17 @@ arg1 = float(sys.argv[1])
 env = CartPole()
 
 # predefined parameters
-gamma = 0.9
+gamma = 1.0
 alpha = arg1
 state_space = 24 #not used in this code
 actions = 2
 steps = 25 #not used in this code
-episodes = 100
-e = 0.4
+episodes =100
+e = 0.1
 discount=1.0
 plot = True
 order = 3
-trails = 20
+trails = 100
 rewards = []
 
 for t in range(trails):
