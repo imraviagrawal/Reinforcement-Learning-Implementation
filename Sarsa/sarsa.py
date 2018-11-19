@@ -69,10 +69,10 @@ class Sarsa(object):
 
                 # Choosing the action a_prime at the state s_prime
                 if self.env.name == "cart":
-                    action_prime = self.sampleActionCart(new_state, e_greedy=False)  # todo sarsa policy change action function to accomdate the q value
+                    action_prime = self.sampleActionCart(new_state, e_greedy=False)
 
                 elif self.env.name == "grid":
-                    action_prime = self.sampleActionGrid(new_state, e_greedy=False) # todo sarsa policy
+                    action_prime = self.sampleActionGrid(new_state, e_greedy=False)
 
                 else:
                     assert "Not Supported environment"
