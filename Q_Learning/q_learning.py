@@ -39,8 +39,6 @@ class Q_learning(object):
             state = self.env.reset() # reset the environment
             status = self.env.status
 
-            print("Episode: ", _)
-
             # While we do not reach the terminal state
             count = 0 # count
             episode_reward = 0 # episode reward
@@ -52,7 +50,7 @@ class Q_learning(object):
                     action = self.sampleActionCart(state, e_greedy=True)
 
                 elif self.env.name == "grid":
-                    action = self.sampleActionGrid(state, e_greedy=True)
+                    action = self.sampleActionGrid(state, e_greedy=False)
 
                 else:
                     assert "Not Supported environment"

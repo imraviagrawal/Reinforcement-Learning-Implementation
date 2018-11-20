@@ -17,14 +17,17 @@ state_space = 24 #not used in this code
 actions = 2
 steps = 25 #not used in this code
 episodes =100
-e = 0.1
+e = 0.01
 discount=1.0
 plot = True
-order = 3
+order = 5
 trails = 100
 rewards = []
 
+# optimal gamma 1, e 0.4, alpha 0.2 discount 1.0 #0.5
+
 for t in range(trails):
+    print("Trail: ", t)
     td = Sarsa(gamma, alpha, env, state_space, steps, e, plot=plot, order=order, discount=discount)
     td.train(episodes, trails)
     rewards.append(td.reward)
@@ -34,4 +37,3 @@ std = np.std(np.array(rewards), axis=0)
 maximumEpisodes = avg.shape[0]
 plt.errorbar(np.array([i for i in range(maximumEpisodes)]), avg, std, marker='^', ecolor='g')
 plt.show()
-

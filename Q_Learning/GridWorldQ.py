@@ -23,7 +23,10 @@ discount=1.0
 trails = 100
 rewards = []
 
+# Best parameters e 0.3, gamma 0.9, alpha 0.5
+
 for t in range(trails):
+    print("Trail: ", t)
     td = Q_learning(gamma, alpha, env, state_space, steps, e,  plot=plot, discount=discount)
     td.train(episodes)
     rewards.append(td.reward)

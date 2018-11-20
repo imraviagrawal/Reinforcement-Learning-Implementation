@@ -1,10 +1,10 @@
 # Imports
-
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 import itertools
 import pickle
+from sklearn.preprocessing import normalize
 
 
 # Sarsa Algorithm class
@@ -50,8 +50,6 @@ class Sarsa(object):
             else:
                 assert "Not Supported environment"
 
-            print("Episode: ", _)
-
             # local variable to store the variable
             count = 0 # count
             episode_reward = 0 # episode reward
@@ -60,7 +58,6 @@ class Sarsa(object):
 
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
-
                 count += 1
                 episode_reward += (self.discount**count)*reward
 
@@ -109,12 +106,14 @@ class Sarsa(object):
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = phi_s/np.linalg.norm(phi_s)
+            phi_s = phi_s / np.linalg.norm(phi_s)
             phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
+
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
             phi_new_s = phi_new_s / np.linalg.norm(phi_new_s)
             phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
+
 
             # make changes
             curr_state_value = np.dot(self.w.T, phi_s)[0]
@@ -153,7 +152,9 @@ class Sarsa(object):
         # linear policy
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
+            # temp_s = temp_s/np.linalg.norm(temp_s)
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            # phi_s = (phi_s - np.mean(phi_s)) / np.std(phi_s)
             phi_s = phi_s / np.linalg.norm(phi_s)
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action

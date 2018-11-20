@@ -17,14 +17,18 @@ state_space = 24 #not used in this code
 actions = 2
 steps = 25 #not used in this code
 episodes =100
-e = 0.01
+e = 0.2
 discount=1.0
 plot = True
-order = 3
+order = 5
 trails = 100
 rewards = []
 
+# best parameter, order 3, e 0.2, alpha 0.5
+# best parameter, order 5, e 0.2, alpha 0.5
+
 for t in range(trails):
+    print("Trail: ", t)
     td = Q_learning(gamma, alpha, env, state_space, steps, e, plot=plot, order=order, discount=discount)
     td.train(episodes)
     rewards.append(td.reward)
