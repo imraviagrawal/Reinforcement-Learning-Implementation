@@ -56,7 +56,7 @@ class CartPole():
 
 
     def reset(self):
-        self.state = np.random.uniform(low=-0.001, high=0.001, size=(4,))
+        self.state = np.random.uniform(low=-0.03, high=0.03, size=(4,))
         self.status = False
         self.t = 0
         return self.state

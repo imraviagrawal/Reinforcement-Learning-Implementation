@@ -20,7 +20,7 @@ episodes =100
 e = 0.2
 discount=1.0
 plot = True
-order = 5
+order = 3
 trails = 100
 rewards = []
 

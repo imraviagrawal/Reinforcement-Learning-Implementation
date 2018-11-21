@@ -1,11 +1,9 @@
 # Imports
-
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 import itertools
 import pickle
-
 
 # Q Learing  Algorithm class
 class Q_learning(object):
@@ -31,7 +29,6 @@ class Q_learning(object):
             self.c = np.array(list(itertools.product(range(order + 1), repeat=4)))
             self.w = np.zeros(2 * ((order + 1) ** 4)).reshape((2 * (order + 1) ** 4), 1)  # 512*1 weight for phi in case
             self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1)  # 256*1 vector to pad the phi
-
 
     def train(self, episodes):
         # Method to run the q_learning algorithm for n episodes
@@ -93,16 +90,17 @@ class Q_learning(object):
             next_state_value = max(self.q_value[new_s, :])
 
         else:
-            # [[-0.42304334  0.28479001 -0.5421062  -2.58969192]] [[0.41186597 0.5142395  0.32744224 0.08783773]]
             temp_s = np.reshape(np.array(s), (1, 4))
             temp_s = (temp_s - self.normalization_min)/self.normalization_denominator
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
             temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+
+            phi_s = np.prod(np.power(temp_s, self.c), axis=1).reshape((-1, 1))
             phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
-            phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
+            phi_new_s = np.prod(np.power(temp_new_s, self.c), axis=1).reshape((-1, 1))
             temp1 = np.vstack([self.zeroStack, phi_new_s]) # if action 0
             temp2 = np.vstack([phi_new_s, self.zeroStack]) # if action 1
             action_prime = 0 if np.dot(self.w.T, temp1)[0] > np.dot(self.w.T, temp2)[0] else 1
@@ -114,6 +112,7 @@ class Q_learning(object):
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
+
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
         if self.env.name == "grid":
@@ -122,7 +121,7 @@ class Q_learning(object):
         else:
             self.w = self.w + self.alpha * delta_t[0] * phi_s
 
-        # self.td_error.append(delta_t*delta_t)
+        self.td_error.append(delta_t*delta_t)
 
     #tabular
     def sampleActionGrid(self, state, e_greedy=True):
@@ -144,8 +143,8 @@ class Q_learning(object):
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
             temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
-            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = phi_s / np.linalg.norm(phi_s)
+            phi_s = np.prod(np.power(temp_s, self.c), axis=1).reshape((-1, 1))
+            # phi_s = phi_s / np.sqrt((np.sum(phi_s ** 2)))
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 
