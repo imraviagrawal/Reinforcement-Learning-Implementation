@@ -95,8 +95,6 @@ class Q_learning(object):
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
             temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
 
-            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-
             phi_s = np.prod(np.power(temp_s, self.c), axis=1).reshape((-1, 1))
             phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
@@ -144,7 +142,6 @@ class Q_learning(object):
             temp_s = np.reshape(np.array(state), (1, 4))
             temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
             phi_s = np.prod(np.power(temp_s, self.c), axis=1).reshape((-1, 1))
-            # phi_s = phi_s / np.sqrt((np.sum(phi_s ** 2)))
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 

@@ -25,13 +25,15 @@ class Sarsa(object):
         self.probs = [0.25, 0.25, 0.25, 0.25]
         self.plot = plot
         self.discount = discount
+        self.normalization_min = np.array([-2.4, -10, -math.pi/2, -math.pi])
+        self.normalization_denominator = np.array([4.8, 20, math.pi, 2*math.pi])
         if self.env.name == "cart":
             self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
             self.w = np.zeros(2*((order + 1) ** 4)).reshape((2*(order + 1) ** 4), 1) # 512*1 weight for phi in case
             self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1) # 256*1 vector to pad the phi
 
 
-    def train(self, episodes, trails):
+    def train(self, episodes):
         # Method to run the sarsa algorithm for n episodes
         # input: episodes, trails
         # return: None
@@ -103,15 +105,15 @@ class Sarsa(object):
 
         else:
             temp_s = np.reshape(np.array(s), (1, 4))
+            temp_s = (temp_s - self.normalization_min)/self.normalization_denominator
             temp_new_s = np.reshape(np.array(new_s), (1, 4))
+            temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = phi_s / np.linalg.norm(phi_s)
             phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
-            phi_new_s = phi_new_s / np.linalg.norm(phi_new_s)
             phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
 
 
@@ -122,9 +124,9 @@ class Sarsa(object):
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
+
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
-
         if self.env.name == "grid":
             self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t
 
@@ -152,10 +154,8 @@ class Sarsa(object):
         # linear policy
         else:
             temp_s = np.reshape(np.array(state), (1, 4))
-            # temp_s = temp_s/np.linalg.norm(temp_s)
+            temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            # phi_s = (phi_s - np.mean(phi_s)) / np.std(phi_s)
-            phi_s = phi_s / np.linalg.norm(phi_s)
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 

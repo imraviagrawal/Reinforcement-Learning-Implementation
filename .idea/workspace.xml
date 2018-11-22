@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ad37e0d-d8ca-45ef-ad7b-6be9ef4bb0ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sarsa/cartPoleSarsaPoly.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sarsa/sarsaPoly.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/cartPole.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/cartPole.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Q_Learning/q_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/q_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa/sarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/sarsa.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,48 +26,64 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="jpg" value="10" />
           <entry key="md" value="1" />
-          <entry key="py" value="45" />
+          <entry key="py" value="53" />
+          <entry key="sh" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Bash" value="1" />
+          <entry key="Image" value="10" />
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="44" />
+          <entry key="Python" value="52" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="614" />
+          <entry key="Python Console" value="621" />
           <entry key="md" value="88" />
-          <entry key="py" value="6935" />
+          <entry key="py" value="7466" />
+          <entry key="sh" value="61" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+          <entry key="Bash" value="61" />
           <entry key="Markdown" value="88" />
-          <entry key="Python" value="7480" />
+          <entry key="Python" value="8018" />
           <entry key="Scratch" value="69" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="145" column="12" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="87" />
+            <state relative-caret-position="2190">
+              <caret line="146" column="62" selection-start-line="146" selection-start-column="62" selection-end-line="146" selection-end-column="62" />
               <folding>
                 <element signature="e#11#29#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -69,20 +91,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning_poly.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="105" column="94" selection-start-line="105" selection-start-column="94" selection-end-line="105" selection-end-column="94" />
-              <folding>
-                <element signature="e#11#29#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="48">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py">
+        <entry file="file://$PROJECT_DIR$/Q_Learning/GridWorldQ.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+            <state relative-caret-position="535">
+              <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
               <folding>
                 <element signature="e#10#43#0" expanded="true" />
               </folding>
@@ -91,15 +110,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPole.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/Sarsa/sarsaPoly.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-64">
+              <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
+        <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+            <state relative-caret-position="225">
+              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+              <folding>
+                <element signature="e#10#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQ.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+              <folding>
+                <element signature="e#10#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
               <folding>
                 <element signature="e#10#33#0" expanded="true" />
               </folding>
@@ -137,17 +193,22 @@
         <option value="$PROJECT_DIR$/TD Algorithm/cartPoleTd.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_8.py" />
         <option value="$PROJECT_DIR$/Sarsa/scratch.py" />
-        <option value="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" />
         <option value="$PROJECT_DIR$/Sarsa/cartPole.py" />
-        <option value="$PROJECT_DIR$/Sarsa/sarsa.py" />
-        <option value="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" />
         <option value="$PROJECT_DIR$/Q_Learning/Deep_q.py" />
-        <option value="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" />
         <option value="$PROJECT_DIR$/Q_Learning/cartPole.py" />
-        <option value="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" />
         <option value="$PROJECT_DIR$/Q_Learning/q_learning.py" />
         <option value="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" />
+        <option value="$PROJECT_DIR$/Q_Learning/cartPoleSarsaPoly.py" />
+        <option value="$PROJECT_DIR$/Sarsa/figures/poly.py" />
+        <option value="$PROJECT_DIR$/Sarsa/sarsa.py" />
+        <option value="$PROJECT_DIR$/Sarsa/sarsaPoly.py" />
+        <option value="$PROJECT_DIR$/Sarsa/cartPoleSarsaPoly.py" />
+        <option value="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" />
+        <option value="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" />
+        <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" />
+        <option value="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" />
+        <option value="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" />
       </list>
     </option>
   </component>
@@ -182,6 +243,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,21 +261,10 @@
               <item name="Reinforcement-Learning-Implementation" type="462c0819:PsiDirectoryNode" />
               <item name="Q_Learning" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Reinforcement-Learning-Implementation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Reinforcement-Learning-Implementation" type="462c0819:PsiDirectoryNode" />
-              <item name="Sarsa" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Reinforcement-Learning-Implementation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Reinforcement-Learning-Implementation" type="462c0819:PsiDirectoryNode" />
-              <item name="TD Algorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,12 +324,12 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.114163615" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22893773" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.2570533" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.32914045" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="3" visible="true" weight="0.3291536" />
+      <window_info anchor="bottom" id="Python Console" order="3" weight="0.3291536" />
       <window_info anchor="bottom" id="LuaCheck" order="4" weight="0.3291536" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
@@ -332,19 +383,8 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TD Algorithm/sarsa.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Q_Learning/GridWorld_q.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding>
-            <element signature="e#10#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/TD Algorithm/sarsa.py" />
+    <entry file="file://$PROJECT_DIR$/Q_Learning/GridWorld_q.py" />
     <entry file="file://$PROJECT_DIR$/Sarsa/GridWorld.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -368,9 +408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -395,16 +432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sarsa/cartPole.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
@@ -412,46 +439,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Q_Learning/Deep_q.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="69" column="42" lean-forward="true" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
-          <folding>
-            <element signature="e#10#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="83" column="45" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Q_Learning/GridWorldQ.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <element signature="e#10#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPole.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/Deep_q.py" />
     <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPoleTd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -473,19 +461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="145" column="12" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="87" />
-          <folding>
-            <element signature="e#11#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -496,30 +471,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQ.py">
+    <entry file="file://$PROJECT_DIR$/Sarsa/figures/poly.py" />
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order5_alpha0.0005.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order5_alpha0.0001.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TD Algorithm/cartPole.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order5_alpha0.1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order5_alpha0.5.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order5_alpha0.2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/cartPole_type_poly_order3_alpha0.2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/figures/poly/cartPole_type_poly_order2_alpha0.0001_e0.1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsaPoly.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="25" />
+        <state relative-caret-position="330">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding>
-            <element signature="e#10#43#0" expanded="true" />
+            <element signature="e#10#37#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/figures/Grid/Grid_alpha0.005_e0.1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/figures/Grid/Grid_alpha0.001_e0.1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/cartPoleSarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="39" selection-start-line="39" selection-end-line="61" selection-end-column="23" />
+          <folding>
+            <element signature="e#10#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/figures/linear/cartPole_type_linear_order3_alpha0.2_e0.1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning_poly.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="105" column="94" selection-start-line="105" selection-start-column="94" selection-end-line="105" selection-end-column="94" />
+        <state relative-caret-position="48">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2190">
+          <caret line="146" column="62" selection-start-line="146" selection-start-column="62" selection-end-line="146" selection-end-column="62" />
           <folding>
             <element signature="e#11#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/sarsaPoly.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-64">
+          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        <state relative-caret-position="225">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding>
+            <element signature="e#10#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/cartPoleQ.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#10#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+          <folding>
+            <element signature="e#10#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Q_Learning/GridWorldQ.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
           <folding>
             <element signature="e#10#43#0" expanded="true" />
           </folding>

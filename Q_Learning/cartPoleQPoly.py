@@ -4,6 +4,7 @@ from cartPole import CartPole
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
+from tqdm import tqdm
 
 # arg1 = float(sys.argv[1])
 
@@ -19,17 +20,18 @@ episodes =100
 e = 0.2
 discount=1.0
 plot = True
-order = 5
+order = 3
 trails = 100
 type = "poly"
 
 
 # best parameter, order 3, e 0.2, alpha 0.5
 # best parameter, order 5, e 0.2, alpha 0.5
-for alpha in [0.0001, 0.0005]:#, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
+for alpha in [0.2, 0.3, 0.4, 0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
     rewards = []
-    for t in range(trails):
-        print("Alpha: %s, Trail: %s" %(alpha, t))
+    print("Alpha: ", alpha)
+    for t in tqdm(range(trails)):
+        # print("Alpha: %s, Trail: %s" %(alpha, t))
         td = Q_learning(gamma, alpha, env, state_space, steps, e, plot=plot, order=order, discount=discount)
         td.train(episodes)
         rewards.append(td.reward)
