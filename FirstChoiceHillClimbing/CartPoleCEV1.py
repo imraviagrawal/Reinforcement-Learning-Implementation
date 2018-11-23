@@ -7,16 +7,16 @@ import time, sys
 
 name = sys.argv[1]
 # Predefined variables
-K = 30 # Trails
-Ke = 20 # elite population
+K = 20 # Trails
+Ke = 4 # elite population
 e = 0.0001 # Episolon
 maximumEpisodes = 50 # Total number of times running the policy for KN times
 N = 10 # number of times to run the policy
-steps = 50 # to travel in the policy
+steps =  500 # to travel in the policy
 state_space = 4
 sigma = 1
 actions = 1
-trails = 500
+trails = 3
 numOfThreads = 1
 
 # initialing the gridWorld environment
@@ -110,9 +110,9 @@ result = {"result":all_rewards}
 file_name = "gridWorldCEResults/cartpolesave%s.p" %name
 pickle.dump(result, open(file_name, "wb" ))
 # print(len(all_rewards))
-all_rewards = np.average(np.array(all_rewards), axis=0)
-plt.plot(all_rewards)
-# #plt.errorbar(np.array([i for i in range(maximumEpisodes)]).reshape(1, -1), np.array(avg_rewards).reshape(1, -1), std_rewards, marker='^', ecolor='g')
-plt.show()
+# all_rewards = np.average(np.array(all_rewards), axis=0)
+# plt.plot(all_rewards)
+# plt.errorbar(np.array([i for i in range(maximumEpisodes)]).reshape(1, -1), np.array(avg_rewards).reshape(1, -1), std_rewards, marker='^', ecolor='g')
+# plt.show()
 
 
