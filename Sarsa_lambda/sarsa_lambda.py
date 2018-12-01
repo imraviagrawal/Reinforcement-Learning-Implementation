@@ -124,7 +124,7 @@ class Sarsa_lambda(object):
 
         #updating eligibility trace
         self.eligibility = self.gamma * self.lambda_ * self.eligibility
-        self.eligibility += 1
+        self.eligibility[s, action] += 1
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
@@ -132,7 +132,7 @@ class Sarsa_lambda(object):
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
         if self.env.name == "grid":
-            self.q_value[s, action] = self.q_value[s, action] + self.alpha*delta_t*self.eligibility
+            self.q_value = self.q_value + self.alpha*delta_t*self.eligibility
 
         else:
             self.w = self.w + self.alpha*delta_t[0]*phi_s
@@ -146,7 +146,7 @@ class Sarsa_lambda(object):
         if e_greedy and np.random.rand() < self.episolon:
             action = np.random.choice([0, 1, 2, 3], p=self.probs)
         else:
-            action = np.random.choice([0, 1, 2, 3], p=self.q_value[index, :])
+            action = np.argmax(self.q_value[index, :])
         return action
 
 

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ad37e0d-d8ca-45ef-ad7b-6be9ef4bb0ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +44,7 @@
         <counts>
           <entry key="Python Console" value="621" />
           <entry key="md" value="88" />
-          <entry key="py" value="9292" />
+          <entry key="py" value="9363" />
           <entry key="sh" value="61" />
         </counts>
       </usages-collector>
@@ -53,7 +52,7 @@
         <counts>
           <entry key="Bash" value="61" />
           <entry key="Markdown" value="88" />
-          <entry key="Python" value="9844" />
+          <entry key="Python" value="9915" />
           <entry key="Scratch" value="69" />
         </counts>
       </usages-collector>
@@ -90,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1698">
+            <state relative-caret-position="360">
               <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
             </state>
           </provider>
@@ -99,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+            <state relative-caret-position="401">
+              <caret line="134" column="39" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
               <folding>
                 <element signature="e#10#28#0" expanded="true" />
               </folding>
@@ -111,10 +110,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+            <state relative-caret-position="315">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
               <folding>
-                <element signature="e#36#79#0" expanded="true" />
+                <element signature="e#10#47#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -285,9 +284,9 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.12026862" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.12026862" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.2570533" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.2570533" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.32914045" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.3291536" />
@@ -582,23 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1698">
-          <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-          <folding>
-            <element signature="e#10#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -619,12 +601,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="134" column="39" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
+          <folding>
+            <element signature="e#10#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        <state relative-caret-position="315">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
           <folding>
-            <element signature="e#36#79#0" expanded="true" />
+            <element signature="e#10#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
