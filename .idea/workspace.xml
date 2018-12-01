@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ad37e0d-d8ca-45ef-ad7b-6be9ef4bb0ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Q_Learning/gridWorldQlearning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mountainCar/MountainCar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/GridWorldQ.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/cartPoleQ.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/cartPoleQPoly.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/GridWorldSarsa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/cartPoleSarsa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/gridWorldSarsaPoly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/gridWorldSarsaPoly.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sarsa/sarsaPoly.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarsa/sarsaPoly.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +28,7 @@
         <counts>
           <entry key="jpg" value="10" />
           <entry key="md" value="1" />
-          <entry key="py" value="76" />
+          <entry key="py" value="80" />
           <entry key="sh" value="1" />
         </counts>
       </usages-collector>
@@ -45,7 +37,7 @@
           <entry key="Bash" value="1" />
           <entry key="Image" value="10" />
           <entry key="Markdown" value="1" />
-          <entry key="Python" value="75" />
+          <entry key="Python" value="79" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -53,7 +45,7 @@
         <counts>
           <entry key="Python Console" value="621" />
           <entry key="md" value="88" />
-          <entry key="py" value="9051" />
+          <entry key="py" value="9292" />
           <entry key="sh" value="61" />
         </counts>
       </usages-collector>
@@ -61,7 +53,7 @@
         <counts>
           <entry key="Bash" value="61" />
           <entry key="Markdown" value="88" />
-          <entry key="Python" value="9603" />
+          <entry key="Python" value="9844" />
           <entry key="Scratch" value="69" />
         </counts>
       </usages-collector>
@@ -69,11 +61,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mountainCar/MountainCar.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="170">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
               <folding>
                 <element signature="e#32#50#0" expanded="true" />
                 <marker date="1543638275213" expanded="true" signature="85:90" ph="..." />
@@ -86,10 +78,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sarsa/cartPole.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
+            <state relative-caret-position="345">
               <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
               <folding>
                 <element signature="e#10#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1698">
+              <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+              <folding>
+                <element signature="e#10#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+              <folding>
+                <element signature="e#36#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,6 +171,8 @@
         <option value="$PROJECT_DIR$/Q_Learning/q_learning_poly.py" />
         <option value="$PROJECT_DIR$/Q_Learning/gridWorldQlearning.py" />
         <option value="$PROJECT_DIR$/mountainCar/MountainCar.py" />
+        <option value="$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py" />
+        <option value="$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py" />
       </list>
     </option>
   </component>
@@ -191,7 +218,7 @@
             <path>
               <item name="Reinforcement-Learning-Implementation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Reinforcement-Learning-Implementation" type="462c0819:PsiDirectoryNode" />
-              <item name="mountainCar" type="462c0819:PsiDirectoryNode" />
+              <item name="Sarsa_lambda" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -216,6 +243,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Sarsa_lambda" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Sarsa" />
       <recent name="$PROJECT_DIR$/Q_Learning" />
     </key>
@@ -252,13 +281,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1680" y="-225" width="1267" height="1417" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16081633" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.12026862" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.1889401" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.2570533" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.32914045" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.3291536" />
@@ -402,13 +431,6 @@
     <entry file="file://$PROJECT_DIR$/Q_Learning/figures/linear/cartPole_type_linear_order3_alpha0.2_e0.1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Q_Learning/q_learning.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2190">
@@ -430,6 +452,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#10#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -437,6 +462,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="685">
           <caret line="109" selection-start-line="109" selection-end-line="110" selection-end-column="43" />
+          <folding>
+            <element signature="e#10#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -451,6 +479,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
           <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <element signature="e#10#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -498,16 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sarsa/sarsaPoly.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -549,9 +570,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mountainCar/MountainCar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding>
+            <element signature="e#32#50#0" expanded="true" />
+            <marker date="1543638275213" expanded="true" signature="85:90" ph="..." />
+            <marker date="1543638275213" expanded="true" signature="388:967" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/sarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1698">
+          <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa_lambda/sarsa_lambda.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding>
+            <element signature="e#10#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sarsa/GridWorldSarsa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="45" selection-end-column="18" />
+          <folding>
+            <element signature="e#10#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sarsa/cartPole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
+        <state relative-caret-position="345">
           <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
           <folding>
             <element signature="e#10#28#0" expanded="true" />
@@ -559,14 +619,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mountainCar/MountainCar.py">
+    <entry file="file://$PROJECT_DIR$/Sarsa_lambda/GridWorldSarsa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="199">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
           <folding>
-            <element signature="e#32#50#0" expanded="true" />
-            <marker date="1543638275213" expanded="true" signature="85:90" ph="..." />
-            <marker date="1543638275213" expanded="true" signature="388:967" ph="..." />
+            <element signature="e#36#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
