@@ -128,7 +128,8 @@ class Q_learning(object):
         if e_greedy and np.random.rand() < self.episolon:
             action = np.random.choice([0, 1, 2, 3], p=self.probs)
         else:
-            action = np.argmax(self.q_value[index, :])
+            q_value = self.softmax(self.q_value[index, :])
+            action = np.random.choice([0, 1, 2, 3], p=q_value)
         return action
 
 
@@ -144,6 +145,14 @@ class Q_learning(object):
             phi_s = np.prod(np.power(temp_s, self.c), axis=1).reshape((-1, 1))
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
+
+    def softmax(self, x, sigma=1.0):
+        x = sigma*x
+        mx = np.max(x, axis=-1, keepdims=True)
+        numerator = np.exp(x - mx)
+        denominator = np.sum(numerator, axis=-1, keepdims=True)
+        theta_k = numerator / denominator
+        return theta_k
 
     def plotTdError(self):
         plt.plot(self.td_error)

@@ -5,6 +5,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
+import pickle
 
 # arg1 = float(sys.argv[1])
 
@@ -39,8 +40,8 @@ rewards = []
 # plt.show()
 
 # best parameter, order 5, e 0.2, alpha 0.5
-for e in [0.1, 0.2, 0.3, 0.4]:
-    for alpha in [0.2, 0.3, 0.4, 0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
+for e in [0.1]:#, 0.2, 0.3, 0.4]:
+    for alpha in [0.2]:#, 0.3, 0.4, 0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
         rewards = []
         print("Alpha: ", alpha)
         for t in tqdm(range(trails)):
@@ -53,8 +54,10 @@ for e in [0.1, 0.2, 0.3, 0.4]:
         std = np.std(np.array(rewards), axis=0)
         maximumEpisodes = avg.shape[0]
         plt.errorbar(np.array([i for i in range(maximumEpisodes)]), avg, std, marker='^', ecolor='g')
-        name = "figures/grid/type_%s_alpha%s.jpg" %(type, alpha)
+        name = "GridQtype_%s_alpha%s.jpg" %(alpha)
+        pickle.dump(avg, open(name, "wb"))
         plt.xlabel("Number of episodes")
         plt.ylabel("Total Reward")
-        plt.savefig(name)
-        plt.close()
+        plt.show()
+        # plt.savefig(name)
+        # plt.close()

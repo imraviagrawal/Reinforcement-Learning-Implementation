@@ -5,7 +5,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
-
+import pickle
 # arg1 = float(sys.argv[1])
 
 # Initializing the gridworld
@@ -40,9 +40,9 @@ trails = 100
 type = "linear"
 # best parameter, order 3, e 0.2, alpha 0.5
 # best parameter, order 5, e 0.2, alpha 0.5
-for e in [0.1, 0.01, 0.3, 0.4]:
-    for order in [3, 5]:
-        for alpha in [0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
+for e in [0.3]:#, 0.1, 0.01, 0.3, 0.4]:
+    for order in [3]: #, 5]:
+        for alpha in [0.01]:#, 0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
             rewards = []
             print("Alpha: ", alpha)
             for t in tqdm(range(trails)):
@@ -55,8 +55,10 @@ for e in [0.1, 0.01, 0.3, 0.4]:
             std = np.std(np.array(rewards), axis=0)
             maximumEpisodes = avg.shape[0]
             plt.errorbar(np.array([i for i in range(maximumEpisodes)]), avg, std, marker='^', ecolor='g')
-            name = "Sarsa/figures/%s/cartPole_type_%s_order%s_alpha%s_e%s.jpg" %(type, type,  order, alpha, e)
+            #name = "Sarsa/figures/%s/cartPole_type_%s_order%s_alpha%s_e%s.jpg" %(type, type,  order, alpha, e)
+            name = "Grid_alpha%s_e%s.jpg" % (alpha, e)
+            pickle.dump(avg, open(name, "wb"))
             plt.xlabel("Number of episodes")
             plt.ylabel("Total Reward")
-            plt.savefig(name)
-            plt.close()
+            # plt.savefig(name)
+            # plt.close()

@@ -24,7 +24,6 @@ order = 3
 trails = 100
 type = "poly"
 
-
 # best parameter, order 3, e 0.2, alpha 0.5
 # best parameter, order 5, e 0.2, alpha 0.5
 for alpha in [0.2, 0.3, 0.4, 0.0001, 0.0005, 0.0009, 0.001, 0.005, 0.009, 0.01, 0.05, 0.09, 0.1, 0.5, 0.9]:
