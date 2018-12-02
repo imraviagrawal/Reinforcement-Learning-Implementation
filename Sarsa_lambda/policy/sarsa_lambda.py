@@ -26,12 +26,14 @@ class Sarsa_lambda(object):
         self.probs = [0.25, 0.25, 0.25, 0.25]
         self.plot = plot
         self.discount = discount
-        self.normalization_min = np.array([-2.4, -10, -math.pi/2, -math.pi])
-        self.normalization_denominator = np.array([4.8, 20, math.pi, 2*math.pi])
-        if self.env.name == "cart":
-            self.c = np.array(list(itertools.product(range(order+1), repeat=4)))
-            self.w = np.zeros(2*((order + 1) ** 4)).reshape((2*(order + 1) ** 4), 1) # 512*1 weight for phi in case
-            self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1) # 256*1 vector to pad the phi
+        self.actions = actions
+        self.normalization_min = np.array([-1.2, -0.07])
+        self.normalization_denominator = np.array([2.4, 0.14])
+        if self.env.name != "grid":
+            self.c = np.array(list(itertools.product(range(order+1), repeat=self.state_space)))
+            self.w = np.random.uniform(0, 1, size=(actions*((order + 1) ** self.state_space), 1))
+            self.eligibility = np.zeros((actions*((order + 1) ** self.state_space), 1))
+            self.zeroStack = np.zeros(((order + 1) ** self.state_space)).reshape(((order + 1) ** self.state_space), 1) # 256*1 vector to pad the phi
 
     def train(self, episodes):
 
@@ -45,10 +47,13 @@ class Sarsa_lambda(object):
 
             # Getting action # todo make changes as per policy e-greedy
             if self.env.name == "cart":
-                action = self.sampleActionCart(state) # todo episolon greedy policy
+                action = self.sampleActionCart(state)
 
             elif self.env.name == "grid":
-                action = self.sampleActionGrid(state) # todo episolon greedy policy
+                action = self.sampleActionGrid(state)
+
+            elif self.env.name == "mountain":
+                action = self.sampleActionMountain(state)
 
             else:
                 assert "Not Supported environment"
@@ -57,12 +62,13 @@ class Sarsa_lambda(object):
             count = 0 # count
             episode_reward = 0 # episode reward
 
-            while not status:
+            for _ in range(self.steps):
 
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
                 count += 1
                 episode_reward += (self.discount**count)*reward
+                # print(episode_reward)
 
                 if status:
                     break
@@ -73,6 +79,9 @@ class Sarsa_lambda(object):
 
                 elif self.env.name == "grid":
                     action_prime = self.sampleActionGrid(new_state, e_greedy=False)
+
+                elif self.env.name == "mountain":
+                    action_prime = self.sampleActionMountain(state, e_greedy=True)
 
                 else:
                     assert "Not Supported environment"
@@ -104,27 +113,33 @@ class Sarsa_lambda(object):
             curr_state_value = self.q_value[s, action]
             next_state_value = self.q_value[new_s, action_prime]
 
+            # updating eligibility trace
+            self.eligibility = self.gamma * self.lambda_ * self.eligibility
+            self.eligibility[s, action] += 1
+
         else:
-            temp_s = np.reshape(np.array(s), (1, 4))
+            temp_s = np.reshape(np.array(s), (1, self.state_space))
             temp_s = (temp_s - self.normalization_min)/self.normalization_denominator
-            temp_new_s = np.reshape(np.array(new_s), (1, 4))
+            temp_new_s = np.reshape(np.array(new_s), (1, self.state_space))
             temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
 
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
+            phi_s = self.phiHelper(phi_s, action)
+            # phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
-            phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
+            # phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
+            phi_new_s = self.phiHelper(phi_new_s, action_prime)
 
 
             # make changes
-            curr_state_value = np.dot(self.w.T, phi_s)[0]
-            next_state_value = np.dot(self.w.T, phi_new_s)[0]
+            curr_state_value = np.dot(self.w.T, phi_s)[0][0]
+            next_state_value = np.dot(self.w.T, phi_new_s)[0][0]
 
-        #updating eligibility trace
-        self.eligibility = self.gamma * self.lambda_ * self.eligibility
-        self.eligibility[s, action] += 1
+            # updating eligibility trace
+            # self.eligibility = self.gamma * self.lambda_ * self.eligibility + phi_s
+
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
@@ -132,12 +147,12 @@ class Sarsa_lambda(object):
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
         if self.env.name == "grid":
-            self.q_value = self.q_value + self.alpha*delta_t*self.eligibility
+            self.q_value = self.q_value + self.alpha*delta_t*phi_s
 
         else:
-            self.w = self.w + self.alpha*delta_t[0]*phi_s
+            self.w = self.w + self.alpha*delta_t*self.eligibility
 
-        self.td_error.append(delta_t*delta_t)
+        self.td_error.append(0)
 
     #tabular
     def sampleActionGrid(self, state, e_greedy=True):
@@ -157,12 +172,31 @@ class Sarsa_lambda(object):
 
         # linear policy
         else:
-            temp_s = np.reshape(np.array(state), (1, 4))
+            temp_s = np.reshape(np.array(state), (1, self.state_space))
             temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
         return action
 
+    def sampleActionMountain(self, state, e_greedy=True):
+        if e_greedy and np.random.rand() < self.episolon:
+            action = np.random.choice(self.env.action, p=self.env.probs)
+        else:
+            temp_s = np.reshape(np.array(state), (1, self.state_space))
+            temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
+            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            action = np.argmax(np.dot(phi_s.T, self.w.reshape(-1, self.actions))[0]) - 1
+        return action
+
+    def phiHelper(self, phi, action=None):
+        if action == -1:
+            phi_s = np.vstack([self.zeroStack, self.zeroStack, phi])
+        elif action == 0:
+            phi_s = np.vstack([self.zeroStack, phi, self.zeroStack])
+        else:
+            phi_s = np.vstack([phi, self.zeroStack, self.zeroStack])
+
+        return phi_s
 
     def plotTdError(self):
         plt.plot(self.td_error)
