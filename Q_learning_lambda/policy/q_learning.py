@@ -30,9 +30,11 @@ class Q_learning(object):
         self.normalization_min = np.array([-2.4, -10, -math.pi/2, -math.pi])
         self.normalization_denominator = np.array([4.8, 20, math.pi, 2*math.pi])
         if self.env.name == "cart":
-            self.c = np.array(list(itertools.product(range(order + 1), repeat=4)))
-            self.w = np.zeros(2 * ((order + 1) ** 4)).reshape((2 * (order + 1) ** 4), 1)  # 512*1 weight for phi in case
-            self.zeroStack = np.zeros(((order + 1) ** 4)).reshape(((order + 1) ** 4), 1)  # 256*1 vector to pad the phi
+            self.c = np.array(list(itertools.product(range(order + 1), repeat=self.state_space)))
+            self.w = np.zeros((((order + 1) ** self.state_space), self.actions))
+            # self.w = np.random.uniform(0, 1, size=(((order + 1) ** self.state_space), self.actions))
+            self.eligibility = np.zeros((((order + 1) ** self.state_space), self.actions))
+            # self.zeroStack = np.zeros(((order + 1) ** self.state_space)).reshape(((order + 1) ** self.state_space), 1) # 256*1 vector to pad the phi
 
 
     def train(self, episodes):
@@ -46,7 +48,11 @@ class Q_learning(object):
             # While we do not reach the terminal state
             count = 0 # count
             episode_reward = 0 # episode reward
+            steps = 0
             while not status:
+                if steps == self.steps:
+                    break
+                steps += 1
 
                 # Choosing the action a_prime at the state s_prime
 
@@ -55,6 +61,9 @@ class Q_learning(object):
 
                 elif self.env.name == "grid":
                     action = self.sampleActionGrid(state, e_greedy=False)
+
+                elif self.env.name == "mountain":
+                    action = self.sampleActionMountain(state)
 
                 else:
                     assert "Not Supported environment"
@@ -75,6 +84,8 @@ class Q_learning(object):
                 state = new_state
 
             self.reward.append(episode_reward)
+            if self.env.name == "mountain":
+                self.eligibility = np.zeros((((self.order + 1) ** self.state_space), self.actions))
 
 
 
@@ -93,30 +104,28 @@ class Q_learning(object):
             # gettting the last value and new value
             curr_state_value = self.q_value[s, action]
             next_state_value = max(self.q_value[new_s, :])
+            # updating eligibility trace
+            self.eligibility = self.gamma * self.lambda_ * self.eligibility
+            self.eligibility[s, action] += 1
 
         else:
-            # [[-0.42304334  0.28479001 -0.5421062  -2.58969192]] [[0.41186597 0.5142395  0.32744224 0.08783773]]
-            temp_s = np.reshape(np.array(s), (1, 4))
-            temp_s = (temp_s - self.normalization_min)/self.normalization_denominator
-            temp_new_s = np.reshape(np.array(new_s), (1, 4))
+            temp_s = np.reshape(np.array(s), (1, self.state_space))
+            temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
+            temp_new_s = np.reshape(np.array(new_s), (1, self.state_space))
             temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
-
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
-            temp1 = np.vstack([self.zeroStack, phi_new_s]) # if action 0
-            temp2 = np.vstack([phi_new_s, self.zeroStack]) # if action 1
-            action_prime = 0 if np.dot(self.w.T, temp1)[0] > np.dot(self.w.T, temp2)[0] else 1
-            phi_new_s = temp1 if action_prime == 0 else temp2
 
             # make changes
-            curr_state_value = np.dot(self.w.T, phi_s)[0]
-            next_state_value = np.dot(self.w.T, phi_new_s)[0]
+            curr_state_value = np.dot(self.w.T, phi_s)[action + 1][0]
+            next_state_value = np.dot(self.w.T, phi_new_s)[action_prime][0]
 
-        # updating eligibility trace
-        self.eligibility = self.gamma * self.lambda_ * self.eligibility
-        self.eligibility[s, action] += 1
+            # updating eligibility trace
+            self.eligibility = self.gamma * self.lambda_ * self.eligibility
+            self.eligibility[:, action + 1] += phi_s.reshape(-1, )
+
+
 
         # computing the td error
         delta_t = reward + self.gamma*next_state_value - curr_state_value   # td error
@@ -126,7 +135,7 @@ class Q_learning(object):
             self.q_value = self.q_value + self.alpha * delta_t * self.eligibility
 
         else:
-            self.w = self.w + self.alpha * delta_t[0] * phi_s
+            self.w = self.w + self.alpha * delta_t * self.eligibility
 
         # self.td_error.append(delta_t*delta_t)
 
@@ -152,6 +161,16 @@ class Q_learning(object):
             temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
             action = 0 if np.dot(self.w.T, np.vstack([self.zeroStack, phi_s]))[0][0] > np.dot(self.w.T, np.vstack([phi_s, self.zeroStack]))[0][0] else 1
+        return action
+
+    def sampleActionMountain(self, state, e_greedy=True):
+        if e_greedy and np.random.rand() < self.episolon:
+            action = np.random.choice(self.env.action, p=self.env.probs)
+        else:
+            temp_s = np.reshape(np.array(state), (1, self.state_space))
+            temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
+            phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
+            action = np.argmax(np.dot(phi_s.T, self.w)[0]) - 1
         return action
 
     def plotTdError(self):

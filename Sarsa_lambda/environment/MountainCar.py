@@ -24,8 +24,9 @@ class mountaincar():
         position += velocity
         position = np.clip(position, self.minPosition, self.maxPosition)
 
-        if (position == self.minPosition and velocity < 0):
+        if (position <= self.minPosition and velocity < 0):
             velocity = 0
+            position = self.minPosition
 
         self.status = position >= self.maxPosition
 

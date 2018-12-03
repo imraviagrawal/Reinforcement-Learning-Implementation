@@ -31,9 +31,10 @@ class Sarsa_lambda(object):
         self.normalization_denominator = np.array([2.4, 0.14])
         if self.env.name != "grid":
             self.c = np.array(list(itertools.product(range(order+1), repeat=self.state_space)))
-            self.w = np.random.uniform(0, 1, size=(actions*((order + 1) ** self.state_space), 1))
-            self.eligibility = np.zeros((actions*((order + 1) ** self.state_space), 1))
-            self.zeroStack = np.zeros(((order + 1) ** self.state_space)).reshape(((order + 1) ** self.state_space), 1) # 256*1 vector to pad the phi
+            self.w = np.zeros((((order + 1) ** self.state_space), self.actions))
+            # self.w = np.random.uniform(0, 1, size=(((order + 1) ** self.state_space), self.actions))
+            self.eligibility = np.zeros((((order + 1) ** self.state_space), self.actions))
+            # self.zeroStack = np.zeros(((order + 1) ** self.state_space)).reshape(((order + 1) ** self.state_space), 1) # 256*1 vector to pad the phi
 
     def train(self, episodes):
 
@@ -61,9 +62,11 @@ class Sarsa_lambda(object):
             # local variable to store the variable
             count = 0 # count
             episode_reward = 0 # episode reward
-
-            for _ in range(self.steps):
-
+            steps = 0
+            while not status:
+                if steps == self.steps:
+                    break
+                steps += 1
                 # performing the action in the environment and observing the reward and moving to the new state s_prime
                 new_state, reward, status = self.env.performAction(action)
                 count += 1
@@ -81,7 +84,7 @@ class Sarsa_lambda(object):
                     action_prime = self.sampleActionGrid(new_state, e_greedy=False)
 
                 elif self.env.name == "mountain":
-                    action_prime = self.sampleActionMountain(state, e_greedy=True)
+                    action_prime = self.sampleActionMountain(state, e_greedy=False)
 
                 else:
                     assert "Not Supported environment"
@@ -94,8 +97,8 @@ class Sarsa_lambda(object):
                 action = action_prime
 
             self.reward.append(episode_reward)
-
-
+            if self.env.name == "mountain":
+                self.eligibility = np.zeros((((self.order + 1) ** self.state_space), self.actions))
 
     def update(self, reward, s, new_s, action, action_prime):
         # Update the value function
@@ -122,23 +125,17 @@ class Sarsa_lambda(object):
             temp_s = (temp_s - self.normalization_min)/self.normalization_denominator
             temp_new_s = np.reshape(np.array(new_s), (1, self.state_space))
             temp_new_s = (temp_new_s - self.normalization_min) / self.normalization_denominator
-
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            phi_s = self.phiHelper(phi_s, action)
-            # phi_s = np.vstack([self.zeroStack, phi_s]) if action == 0 else np.vstack([phi_s, self.zeroStack])
-
 
             phi_new_s = np.cos(np.dot(self.c, temp_new_s.T) * math.pi)
-            # phi_new_s = np.vstack([self.zeroStack, phi_new_s]) if action_prime == 0 else np.vstack([phi_new_s, self.zeroStack])
-            phi_new_s = self.phiHelper(phi_new_s, action_prime)
-
 
             # make changes
-            curr_state_value = np.dot(self.w.T, phi_s)[0][0]
-            next_state_value = np.dot(self.w.T, phi_new_s)[0][0]
+            curr_state_value = np.dot(self.w.T, phi_s)[action + 1][0]
+            next_state_value = np.dot(self.w.T, phi_new_s)[action_prime][0]
 
             # updating eligibility trace
-            # self.eligibility = self.gamma * self.lambda_ * self.eligibility + phi_s
+            self.eligibility = self.gamma * self.lambda_ * self.eligibility
+            self.eligibility[:, action+1] += phi_s.reshape(-1, )
 
 
         # computing the td error
@@ -147,7 +144,7 @@ class Sarsa_lambda(object):
         # updating the value function if episode is under 100 else calculating
         # the squared error and adding the value to the td_error list.
         if self.env.name == "grid":
-            self.q_value = self.q_value + self.alpha*delta_t*phi_s
+            self.q_value = self.q_value + self.alpha*delta_t*self.eligibility
 
         else:
             self.w = self.w + self.alpha*delta_t*self.eligibility
@@ -185,18 +182,8 @@ class Sarsa_lambda(object):
             temp_s = np.reshape(np.array(state), (1, self.state_space))
             temp_s = (temp_s - self.normalization_min) / self.normalization_denominator
             phi_s = np.cos(np.dot(self.c, temp_s.T) * math.pi)
-            action = np.argmax(np.dot(phi_s.T, self.w.reshape(-1, self.actions))[0]) - 1
+            action = np.argmax(np.dot(phi_s.T, self.w)[0]) - 1
         return action
-
-    def phiHelper(self, phi, action=None):
-        if action == -1:
-            phi_s = np.vstack([self.zeroStack, self.zeroStack, phi])
-        elif action == 0:
-            phi_s = np.vstack([self.zeroStack, phi, self.zeroStack])
-        else:
-            phi_s = np.vstack([phi, self.zeroStack, self.zeroStack])
-
-        return phi_s
 
     def plotTdError(self):
         plt.plot(self.td_error)

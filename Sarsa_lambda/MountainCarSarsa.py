@@ -14,18 +14,18 @@ env = mountaincar()
 gamma = 0.9
 state_space = 2
 actions = 3
-steps = 800
+steps = 1000
 episodes = 100
 discount=1.0
 plot = True
-trails = 5
-order = 5
+trails = 1
+order = 3
 
 # best parameter, order 3, e 0.2, alpha 0.5
 # best parameter, order 5, e 0.2, alpha 0.5
-for e in [0.3, 0.01, 0.3, 0.4]:
-    for alpha in [1.0, 0.001, 0.005, 0.009, 0.01]:#, 0.05, 0.09, 0.1, 0.5]:
-        for lambda_ in [0.96, 0.1, 0.3, 0.5, 0.7]:
+for e in [0.3, 0.1, 0.0]:
+    for alpha in [0.001, 0.05, 0.09, 0.1, 0.5]:
+        for lambda_ in [0.9, 0.5, 0.7, 0.3]:
             rewards = []
             print("Alpha: ", alpha)
             for t in tqdm(range(trails)):
