@@ -84,7 +84,7 @@ class Sarsa_lambda(object):
                     action_prime = self.sampleActionGrid(new_state, e_greedy=False)
 
                 elif self.env.name == "mountain":
-                    action_prime = self.sampleActionMountain(state, e_greedy=False)
+                    action_prime = self.sampleActionMountain(state, e_greedy=True)
 
                 else:
                     assert "Not Supported environment"

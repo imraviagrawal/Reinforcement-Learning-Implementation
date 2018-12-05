@@ -20,6 +20,7 @@ class Q_learning(object):
         self.q_value = np.random.uniform(0, 1, size=(state_space, actions))
         self.eligibility = np.zeros((state_space, actions))
         self.episolon = e
+        self.actions = actions
         self.steps = steps
         self.td_error = []
         self.reward = []
@@ -27,9 +28,9 @@ class Q_learning(object):
         self.probs = [0.25, 0.25, 0.25, 0.25]
         self.plot = plot
         self.discount = discount
-        self.normalization_min = np.array([-2.4, -10, -math.pi/2, -math.pi])
-        self.normalization_denominator = np.array([4.8, 20, math.pi, 2*math.pi])
-        if self.env.name == "cart":
+        self.normalization_min = np.array([-1.2, -0.07])
+        self.normalization_denominator = np.array([2.4, 0.14])
+        if self.env.name != "grid":
             self.c = np.array(list(itertools.product(range(order + 1), repeat=self.state_space)))
             self.w = np.zeros((((order + 1) ** self.state_space), self.actions))
             # self.w = np.random.uniform(0, 1, size=(((order + 1) ** self.state_space), self.actions))
@@ -63,7 +64,7 @@ class Q_learning(object):
                     action = self.sampleActionGrid(state, e_greedy=False)
 
                 elif self.env.name == "mountain":
-                    action = self.sampleActionMountain(state)
+                    action = self.sampleActionMountain(state, e_greedy=True)
 
                 else:
                     assert "Not Supported environment"
@@ -119,7 +120,8 @@ class Q_learning(object):
 
             # make changes
             curr_state_value = np.dot(self.w.T, phi_s)[action + 1][0]
-            next_state_value = np.dot(self.w.T, phi_new_s)[action_prime][0]
+            next_state_value = np.max(np.dot(self.w.T, phi_new_s))
+
 
             # updating eligibility trace
             self.eligibility = self.gamma * self.lambda_ * self.eligibility
